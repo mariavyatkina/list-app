@@ -32,10 +32,12 @@ function App() {
  
   return (
     <div className="App">
-      <input type="text" name="title" placeholder="Movie Title" ref ={movieTitleRef}/>
-      <input type="number" name="year" placeholder="Year" ref ={movieYearRef}/>
-    <input type="text" name="genre" placeholder="Genre" ref={movieGenreRef}/>
-    <button onClick={handleAddMovie}>Add Movie</button>
+      <div class="input-group">
+      <input type="text" name="title" class="form-control" placeholder="Movie Title" ref ={movieTitleRef}/>
+      <input type="number" name="year" class="form-control" placeholder="Year" ref ={movieYearRef}/>
+    <input type="text" name="genre" class="form-control" placeholder="Genre" ref={movieGenreRef}/>
+    <button type="button" class="btn btn-primary" onClick={handleAddMovie}>Add Movie</button>
+    </div>
       <MovieList movies={movies}/>
     </div>
   );

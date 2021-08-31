@@ -9,10 +9,10 @@ export default function MovieList(movies) {
     
     return ( 
         <div>
+            <h1>Movie Catalog</h1>
             {movies.movies.map(movie => {
                 return (
                     <div> 
-                        <h1>This is a movie</h1>
                 <Movie title={movie.title} year={movie.year} genre={movie.genre} />
                 </div>
                 )
