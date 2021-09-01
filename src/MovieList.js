@@ -1,7 +1,7 @@
 import React from 'react'
 import Movie from './Movie'
 
-export default function MovieList(movies) {
+export default function MovieList({movies, toggleSeen}) {
     console.log(movies.movies);
     // const movieList = Array.from(movies);
     
@@ -10,10 +10,10 @@ export default function MovieList(movies) {
     return ( 
         <div>
             <h1>Movie Catalog</h1>
-            {movies.movies.map(movie => {
+            {movies.map(movie => {
                 return (
                     <div> 
-                <Movie title={movie.title} year={movie.year} genre={movie.genre} isSeen={movie.isSeen} />
+                <Movie movie={movie} toggleSeen={toggleSeen} />
                 </div>
                 )
             })}
