@@ -13,7 +13,7 @@ export default function MovieList(movies) {
             {movies.movies.map(movie => {
                 return (
                     <div> 
-                <Movie title={movie.title} year={movie.year} genre={movie.genre} />
+                <Movie title={movie.title} year={movie.year} genre={movie.genre} isSeen={movie.isSeen} />
                 </div>
                 )
             })}
