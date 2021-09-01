@@ -19,7 +19,7 @@ export default function MovieList({movies, setMovie, toggleSeen}) {
                 return (
                     <div>
                 <Movie movie={movie} toggleSeen={toggleSeen}/>
-                <button onClick={() => DeleteHandler(movie.title)}>Delete Movie</button>
+                <button class="btn btn-danger" onClick={() => DeleteHandler(movie.title)}>Delete Movie</button>
                 </div>
                 )
             })}
