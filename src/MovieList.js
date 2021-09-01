@@ -7,7 +7,7 @@ export default function MovieList({movies, setMovie, toggleSeen}) {
 
     const DeleteHandler = () => {
         setMovie(movies.filter(item => 
-            item.isSeen === false
+            item.isSeen === true
         ));
     }
     
@@ -19,10 +19,11 @@ export default function MovieList({movies, setMovie, toggleSeen}) {
                 return (
                     <div>
                 <Movie movie={movie} toggleSeen={toggleSeen}/>
+                <button onClick={() => DeleteHandler()}>Delete Movie</button>
                 </div>
                 )
             })}
-            {movies.length === 0 ? null : <button onClick={() => DeleteHandler()}>Delete Movie</button>}
+            {/* {movies.length === 0 ? null : <button onClick={() => DeleteHandler()}>Delete Movie</button>} */}
         </div>
     )
 }
