@@ -17,17 +17,23 @@ function App() {
   const movieTitleRef = useRef([]);
   const movieYearRef = useRef([]);
   const movieGenreRef = useRef([]);
+  let canAdd = true;
 
   const handleAddMovie = (e) => {
     const movieTitle = movieTitleRef.current.value;
     const movieYear = movieYearRef.current.value;
     const movieGenre = movieGenreRef.current.value;
-    if (movieTitle === '') return
+    if (movieTitle === '') return;
+
+    for(let i = 0; i < movies.length; i++){
+      if(movies[i].title === movieTitle){
+        return ;
+      }
+    }
+
     setMovie(prevMovies => {
       return [...prevMovies, {title: movieTitle, year: movieYear, genre: movieGenre}]
   })
-  
-
 }
  
   return (
@@ -38,7 +44,7 @@ function App() {
     <input type="text" name="genre" class="form-control" placeholder="Genre" ref={movieGenreRef}/>
     <button type="button" class="btn btn-primary" onClick={handleAddMovie}>Add Movie</button>
     </div>
-      <MovieList movies={movies}/>
+      <MovieList movies={movies} setMovie={setMovie}/>
     </div>
   );
 };
