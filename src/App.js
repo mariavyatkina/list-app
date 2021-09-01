@@ -17,7 +17,6 @@ function App() {
   const movieTitleRef = useRef([]);
   const movieYearRef = useRef([]);
   const movieGenreRef = useRef([]);
-  let canAdd = true;
 
   const handleAddMovie = (e) => {
     const movieTitle = movieTitleRef.current.value;
