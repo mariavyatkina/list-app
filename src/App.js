@@ -17,21 +17,31 @@ function App() {
   const movieTitleRef = useRef([]);
   const movieYearRef = useRef([]);
   const movieGenreRef = useRef([]);
+  const [alertMessage, setAlertMessage] = useState();
+  const [alertMessageColor, setAlertMessageColor] = useState({});
  
 
   const handleAddMovie = (e) => {
     const movieTitle = movieTitleRef.current.value;
     const movieYear = movieYearRef.current.value;
     const movieGenre = movieGenreRef.current.value;
-    if (movieTitle === '') return;
+    if (movieTitle === '') {
+      setAlertMessage ("Movie title cannot be empty");
+      setAlertMessageColor({color: 'red'});
+      return;
+    }
 
     for(let i = 0; i < movies.length; i++){
       if(movies[i].title === movieTitle){
+        setAlertMessage("Movie with this title already exists");
+        setAlertMessageColor({color: "red"});
         return ;
       }
     }
 
     setMovie(prevMovies => {
+      setAlertMessage("Movie has been successfully added to the list");
+      setAlertMessageColor({color: "green"});
       return [...prevMovies, {title: movieTitle, year: movieYear, genre: movieGenre, isSeen: false}]
   })
 }
@@ -51,6 +61,8 @@ function toggleSeen(title){
     <input type="text" name="genre" class="form-control" placeholder="Genre" ref={movieGenreRef}/>
     <button type="button" class="btn btn-primary" onClick={handleAddMovie}>Add Movie</button>
     </div>
+      {console.log("Alert Message Color: " + alertMessage)}
+      <p style={alertMessageColor}>{alertMessage}</p>
       <MovieList movies={movies} setMovie={setMovie} toggleSeen={toggleSeen}/>
       <h3>{movies.filter(movie=>movie.isSeen).length} movies in the catalog have been seen</h3>
     </div>
