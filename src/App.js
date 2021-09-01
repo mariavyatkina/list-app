@@ -17,6 +17,7 @@ function App() {
   const movieTitleRef = useRef([]);
   const movieYearRef = useRef([]);
   const movieGenreRef = useRef([]);
+ 
 
   const handleAddMovie = (e) => {
     const movieTitle = movieTitleRef.current.value;
@@ -24,7 +25,7 @@ function App() {
     const movieGenre = movieGenreRef.current.value;
     if (movieTitle === '') return
     setMovie(prevMovies => {
-      return [...prevMovies, {title: movieTitle, year: movieYear, genre: movieGenre}]
+      return [...prevMovies, {title: movieTitle, year: movieYear, genre: movieGenre, isSeen: false}]
   })
   
 
@@ -39,6 +40,7 @@ function App() {
     <button type="button" class="btn btn-primary" onClick={handleAddMovie}>Add Movie</button>
     </div>
       <MovieList movies={movies}/>
+      <h3>0 movies in the catalog have been seen</h3>
     </div>
   );
 };
