@@ -65,7 +65,7 @@ function toggleSeen(title){
     {console.log("Alert Message Color: " + alertMessage)}
     <p style={alertMessageColor}>{alertMessage}</p>
       <MovieList movies={movies} toggleSeen = {toggleSeen} />
-      <h3>{movies.filter(movie=>movie.isSeen).length} movies in the catalog have been seen</h3>
+      <h3>{movies.filter(movie=>movie.isSeen).length} out of {movies.length} in the catalog have been seen</h3>
     </div>
   );
 };
