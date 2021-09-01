@@ -18,8 +18,8 @@ export default function MovieList({movies, setMovie, toggleSeen}) {
             {movies.map((movie, index) => {
                 return (
                     <div>
-                <Movie movie={movie} />
-                <button onClick={() => DeleteHandler(movie.title)} toggleSeen={toggleSeen}>Delete Movie</button>
+                <Movie movie={movie} toggleSeen={toggleSeen}/>
+                <button onClick={() => DeleteHandler(movie.title)}>Delete Movie</button>
                 </div>
                 )
             })}

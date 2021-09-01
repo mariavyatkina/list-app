@@ -1,7 +1,6 @@
 import React from 'react'
 
 export default function Movie({movie, toggleSeen}) {
-    console.log(`Title ${movie.title} Year ${movie.year} Genre ${movie.genre}`);
     function handleSeenClick(){
         toggleSeen(movie.title);
         console.log(movie.isSeen);
