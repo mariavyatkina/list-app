@@ -17,6 +17,7 @@ function App() {
   const movieTitleRef = useRef([]);
   const movieYearRef = useRef([]);
   const movieGenreRef = useRef([]);
+ 
 
   const handleAddMovie = (e) => {
     const movieTitle = movieTitleRef.current.value;
@@ -31,10 +32,17 @@ function App() {
     }
 
     setMovie(prevMovies => {
-      return [...prevMovies, {title: movieTitle, year: movieYear, genre: movieGenre}]
+      return [...prevMovies, {title: movieTitle, year: movieYear, genre: movieGenre, isSeen: false}]
   })
 }
  
+function toggleSeen(title){
+  let movieList = [...movies];
+  let movie = movieList.find(movie => movie.title === title);
+  movie.isSeen = !movie.isSeen;
+  setMovie(movieList);
+}
+
   return (
     <div className="App">
       <div class="input-group">
@@ -43,7 +51,8 @@ function App() {
     <input type="text" name="genre" class="form-control" placeholder="Genre" ref={movieGenreRef}/>
     <button type="button" class="btn btn-primary" onClick={handleAddMovie}>Add Movie</button>
     </div>
-      <MovieList movies={movies} setMovie={setMovie}/>
+      <MovieList movies={movies} setMovie={setMovie} toggleSeen={toggleSeen}/>
+      <h3>{movies.filter(movie=>movie.isSeen).length} movies in the catalog have been seen</h3>
     </div>
   );
 };

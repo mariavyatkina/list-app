@@ -1,7 +1,7 @@
 import React from 'react'
 import Movie from './Movie'
 
-export default function MovieList({movies, setMovie}) {
+export default function MovieList({movies, setMovie, toggleSeen}) {
 
     // const movieList = Array.from(movies);
 
@@ -18,8 +18,8 @@ export default function MovieList({movies, setMovie}) {
             {movies.map((movie, index) => {
                 return (
                     <div>
-                <Movie title={movie.title} year={movie.year} genre={movie.genre} />
-                <button onClick={() => DeleteHandler(movie.title)}>Delete Movie</button>
+                <Movie movie={movie} />
+                <button onClick={() => DeleteHandler(movie.title)} toggleSeen={toggleSeen}>Delete Movie</button>
                 </div>
                 )
             })}
