@@ -5,9 +5,9 @@ export default function MovieList({movies, setMovie, toggleSeen}) {
 
     // const movieList = Array.from(movies);
 
-    const DeleteHandler = () => {
+    const DeleteHandler = (movieTitle) => {
         setMovie(movies.filter(item => 
-            item.isSeen === true
+            item.title !== movieTitle
         ));
     }
     
@@ -19,7 +19,7 @@ export default function MovieList({movies, setMovie, toggleSeen}) {
                 return (
                     <div>
                 <Movie movie={movie} toggleSeen={toggleSeen}/>
-                <button onClick={() => DeleteHandler()}>Delete Movie</button>
+                <button onClick={() => DeleteHandler(movie.title)}>Delete Movie</button>
                 </div>
                 )
             })}
