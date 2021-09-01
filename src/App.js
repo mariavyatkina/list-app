@@ -12,7 +12,6 @@ let movieInfoArray = [
 
 function App() {
 
-
   const [movies, setMovie] = useState([]);
 
   const movieTitleRef = useRef([]);
@@ -20,16 +19,16 @@ function App() {
   const movieGenreRef = useRef([]);
   const [alertMessage, setAlertMessage] = useState();
   const [alertMessageColor, setAlertMessageColor] = useState({});
+ 
 
   const handleAddMovie = (e) => {
     const movieTitle = movieTitleRef.current.value;
     const movieYear = movieYearRef.current.value;
     const movieGenre = movieGenreRef.current.value;
-    
-    if (movieTitle === ''){
+    if (movieTitle === '') {
       setAlertMessage ("Movie title cannot be empty");
       setAlertMessageColor({color: 'red'});
-       return;
+      return;
     }
 
     for(let i = 0; i < movies.length; i++){
@@ -39,21 +38,21 @@ function App() {
         return ;
       }
     }
-    
+
     setMovie(prevMovies => {
       setAlertMessage("Movie has been successfully added to the list");
       setAlertMessageColor({color: "green"});
       return [...prevMovies, {title: movieTitle, year: movieYear, genre: movieGenre, isSeen: false}]
   })
-
 }
+ 
 function toggleSeen(title){
   let movieList = [...movies];
   let movie = movieList.find(movie => movie.title === title);
   movie.isSeen = !movie.isSeen;
   setMovie(movieList);
 }
- 
+
   return (
     <div className="App">
       <div class="input-group">
@@ -62,10 +61,10 @@ function toggleSeen(title){
     <input type="text" name="genre" class="form-control" placeholder="Genre" ref={movieGenreRef}/>
     <button type="button" class="btn btn-primary" onClick={handleAddMovie}>Add Movie</button>
     </div>
-    {console.log("Alert Message Color: " + alertMessage)}
-    <p style={alertMessageColor}>{alertMessage}</p>
-      <MovieList movies={movies} toggleSeen = {toggleSeen} />
-      <h3>{movies.filter(movie=>movie.isSeen).length} movies in the catalog have been seen</h3>
+      {console.log("Alert Message Color: " + alertMessage)}
+      <p style={alertMessageColor}>{alertMessage}</p>
+      <MovieList movies={movies} setMovie={setMovie} toggleSeen={toggleSeen}/>
+      <h3>{movies.filter(movie=>movie.isSeen).length} out of {movies.length} movies in the catalog have been seen</h3>
     </div>
   );
 };
